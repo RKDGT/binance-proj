@@ -1,17 +1,14 @@
 (ns binance.views
   (:require
-   [reagent.core :as r]
    [re-frame.core :as re-frame]
    [binance.subs :as subs]))
-(def current (r/atom "ALL"))
-(def display (r/atom #{"ALL"}))
-(defn grid [data]
+(defn grid [data time]
   [:div.container
    [:div.grid-detail
-    [:p
-     [:h2 "Symbol"]]
-    [:p
-     [:h2 "Price"]]]
+    [:h2 "Symbol"]
+    [:h2 "Price"]]
+   [:div
+    (.slice (str  @time) 0 24)]
    [:div.data
     (for [x @data]
       [:div.price {:key (str (:symbol x))}
@@ -20,6 +17,6 @@
 
 (defn main-panel []
   (let [curr (re-frame/subscribe [::subs/current-data])
-        prev (re-frame/subscribe [::subs/prev-data])]
+        time (re-frame/subscribe [::subs/time])]
     (fn []
-       (grid curr))))
+       (grid curr time))))
