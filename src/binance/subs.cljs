@@ -6,14 +6,6 @@
  ::name
  (fn [db]
    (:name db)))
-(re-frame/reg-fx
-  :change-filter
-  (fn [db _ changed]
-     (assoc-in db [:filter] changed)))
-(re-frame/reg-sub
- ::filter
- (fn [db]
-   (:name db)))
 
 (re-frame/reg-sub
  ::current-data
@@ -24,3 +16,8 @@
  ::prev-data
  (fn [cofx]
    (:prev-data cofx)))
+
+(re-frame/reg-sub
+ ::time
+ (fn [db]
+   (:time db)))
