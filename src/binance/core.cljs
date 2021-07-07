@@ -3,9 +3,7 @@
    [reagent.dom :as rdom]
    [re-frame.core :as re-frame]
    [binance.events :as events]
-   [binance.views
-    :as views
-    :refer [current]]
+   [binance.views :as views]
    [clojure.core.async
     :refer [go-loop
             timeout
@@ -22,7 +20,6 @@
   (re-frame/dispatch [:request])
   (go-loop []
     (<! (timeout 10000))
-    (re-frame/dispatch [:filter-event (str @current)])
-    (re-frame/dispatch [:request]) 
+    (re-frame/dispatch [:request])
     (recur))
   (mount-root))
