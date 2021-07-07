@@ -2,5 +2,5 @@
 
 (def default-db
   {:name "re-frame"
-   :filter "AL"
-   :current-data []})
+   :current-data []
+   :time ""})
